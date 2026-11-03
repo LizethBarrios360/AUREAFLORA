@@ -1,0 +1,38 @@
+CREATE TABLE Usuario_Vendedor (
+    id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    apellido TEXT NOT NULL,
+    cedula TEXT UNIQUE NOT NULL,
+    celular TEXT NOT NULL,
+    codigo_vendedor TEXT UNIQUE NOT NULL,
+    usuario TEXT UNIQUE NOT NULL,
+    contrasena TEXT NOT NULL
+);
+
+CREATE TABLE Producto (
+    id_producto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    valor REAL NOT NULL,
+    id_categoria INTEGER
+);
+
+INSERT INTO Producto VALUES
+(1, 'Ramo 20 Rosas', 50000.0, 2),
+(2, 'Brazalete y Broche Pareja', 20000.0, 1),
+(3, 'Brazalete 1 Rosa', 20000.0, 4),
+(4, 'Ramo 10 Rosas', 15000.0, 2),
+(5, 'Broche Caballero', 5000.0, 1),
+(6, 'Ramo 30 Rosas', 30000.0, 2);
+
+INSERT INTO Usuario_Vendedor VALUES
+(1, 'Aurea', 'Cruz', '1234567890', '0987654321', '001', 'aurea', '1234');
+
+validateUsername:
+SELECT * FROM Usuario_Vendedor WHERE usuario = ?;
+
+products:
+SELECT * FROM Producto;
+
+createUser:
+INSERT INTO Usuario_Vendedor (nombre, apellido, cedula, celular, codigo_vendedor, usuario, contrasena)
+VALUES (?, ?, ?, ?, ?, ?, ?);
